@@ -26,5 +26,11 @@
     <ClInclude Include="rendering\MeshLibrary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="External\GLFW\Include\glfw3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLFW\Include\glfw3native.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
