@@ -145,6 +145,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Application\Application.cpp" />
+    <ClCompile Include="Application\ApplicationConfig.cpp" />
     <ClCompile Include="External\ImGUI\backends\imgui_impl_glfw.cpp" />
     <ClCompile Include="External\ImGUI\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="External\ImGUI\imgui.cpp" />
@@ -152,10 +154,13 @@
     <ClCompile Include="External\ImGUI\imgui_draw.cpp" />
     <ClCompile Include="External\ImGUI\imgui_tables.cpp" />
     <ClCompile Include="External\ImGUI\imgui_widgets.cpp" />
-    <ClCompile Include="rendering\MeshLibrary.cpp" />
-    <ClCompile Include="Tests\02b_ImGUI_ImageDisplay.cpp" />
+    <ClCompile Include="Rendering\MeshLibrary.cpp" />
+    <ClCompile Include="Tests\03_ApplicationTesting.cpp" />
+    <ClCompile Include="Utils\StringUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Application\Application.h" />
+    <ClInclude Include="Application\ApplicationConfig.h" />
     <ClInclude Include="External\GLFW\Include\glfw3.h" />
     <ClInclude Include="External\GLFW\Include\glfw3native.h" />
     <ClInclude Include="External\ImGUI\backends\imgui_impl_glfw.h" />
@@ -167,7 +172,8 @@
     <ClInclude Include="External\ImGUI\imstb_rectpack.h" />
     <ClInclude Include="External\ImGUI\imstb_textedit.h" />
     <ClInclude Include="External\ImGUI\imstb_truetype.h" />
-    <ClInclude Include="rendering\MeshLibrary.h" />
+    <ClInclude Include="Rendering\MeshLibrary.h" />
+    <ClInclude Include="Utils\StringUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

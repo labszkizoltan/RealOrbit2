@@ -18,6 +18,11 @@ D:\cpp_codes\37_RealOrbit\Real_Orbit\Source\Game_v1\Layers\01b_ImGuiTestMenuLaye
 #include "External/ImGUI/backends/imgui_impl_glfw.h"
 #include "External/ImGUI/backends/imgui_impl_opengl3.h"
 
+#include "Utils/StringUtils.h"
+
+#include "Application/ApplicationConfig.h"
+
+
 static void glfw_error_callback(int error, const char* description)
 {
     std::cout << "GLFW Error %d: %s\n" << error << "\n" << description;
@@ -34,10 +39,10 @@ void RenderImGUI(GLFWwindow* window, int mainWindowWidth, int mainWindowHeight)
 
     static int displayedNumber = 0;
 
-    // ImGui::SetNextWindowPos(ImVec2(100, 200));
-    // ImGui::SetNextWindowSize(ImVec2(500, 500));
+    ImGui::SetNextWindowPos(ImVec2(0, 0));
+    ImGui::SetNextWindowSize(ImVec2(200, 600));
 
-    ImGui::Begin("ImGui::Begin()");
+    ImGui::Begin("ImGui::Begin()", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
     ImGui::Text("ImGui::Text() %d", displayedNumber);
     ImGui::Button("ImGui::Button()");
     ImGui::SliderInt("SliderInt()", &displayedNumber, -100, 100);
@@ -66,8 +71,13 @@ void RenderImGUI_2(GLFWwindow* window)
     // ImGui_ImplGlfw_NewFrame();
     // ImGui::NewFrame();
 
+    ImGui::SetNextWindowPos(ImVec2(0, 600));
+    ImGui::SetNextWindowSize(ImVec2(1280, 200));
+
     static int counter = 0;
-    ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+    // ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+    ImGui::Begin("Hello, world!", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse); // Create a window that cannot be resized
+
     ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
     if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
         counter++;
@@ -83,8 +93,29 @@ void RenderImGUI_2(GLFWwindow* window)
     // ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
+void RenderImGUI_imageDisplay()
+{
+    ImGuiIO& io = ImGui::GetIO();
+    io.DisplaySize = ImVec2(1280, 800);
+
+    // ImGui::SetNextWindowPos(ImVec2(200, 0));
+    // ImGui::SetNextWindowSize(ImVec2(1080, 600));
+
+    static int counter = 0;
+    ImGui::Begin("ASD_dsa", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
+    // ImGui::Begin("Hello, world!", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+    ImGui::Text("this will show the rendered world");
+    ImGui::End();
+}
+
 int main()
 {
+
+    // auto asd = Utils::ReadFileWithoutComments("D:/cpp_codes/40_RealOrbit2/testing/config.txt", "//");
+
+    ApplicationConfig::Init("D:/cpp_codes/40_RealOrbit2/testing/config.txt");
+
+
     // initializing glfw:
     glfwSetErrorCallback(glfw_error_callback);
     if (!glfwInit()) { return 1; }
@@ -124,8 +155,9 @@ int main()
         /* Set clear colour */
         /* Render here */
         glClearColor(sin(degRed * degToRad), 0.5, 0.5, 0.0f);
-        degRed += 0.3;
+        degRed += 0.3f;
         degRed = degRed > 180 ? 0 : degRed;
+        // glViewport(200, 0, 1280-200, 600);
         glClear(GL_COLOR_BUFFER_BIT);
     
         /* Swap front and back buffers */
@@ -141,6 +173,7 @@ int main()
 
         RenderImGUI(window, (int)(1280 * main_scale), (int)(800 * main_scale));
         RenderImGUI_2(window);
+        RenderImGUI_imageDisplay();
 
         ImGui::Render();
         int display_w, display_h;
